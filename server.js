@@ -20,11 +20,6 @@ app.get('/notes', (req,res) =>
     res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
 
-// GET * should return the index.html file
-app.get('*', (req,res) =>
-  res.sendFile(path.join(__dirname, '/public/index.html'))  
-);
-
 // GET /api/notes should read the db.json file
 
     // res.json
@@ -33,7 +28,12 @@ app.get('*', (req,res) =>
 
     // fs.writeFile
 
+// GET * should return the index.html file
+app.get('*', (req,res) =>
+  res.sendFile(path.join(__dirname, '/public/index.html'))  
+);
+
 // Use 'app' to listen to a specific PORT
 app.listen(PORT, () =>
-  console.log(`Listening to PORT`)
+  console.log(`Server Up! Listening to PORT`)
 );
