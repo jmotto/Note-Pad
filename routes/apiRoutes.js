@@ -6,5 +6,7 @@ router.get('/notes', (req,res) => {
 });
 
 router.post('/notes', (req,res) => {
-   
-})
+    fs.readFile("./db/db.json").then((data) => res.json(JSON.parse(data)))
+});
+
+module.exports = router; 
