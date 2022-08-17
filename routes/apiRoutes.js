@@ -6,13 +6,13 @@ const apiRouter = express.Router();
 const db = require('../db/db.json');
 
 // API GET Request
-apiRouter.get('/', (req,res) => {
+apiRouter.get('/api/notes', (req,res) => {
 
     res.json(db);
 });
 
 // POST route for new note
-apiRouter.post('/', (req,res) => {
+apiRouter.post('/api/notes', (req,res) => {
 
     const { title , text } = req.body;
 
