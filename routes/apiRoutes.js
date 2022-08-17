@@ -1,18 +1,18 @@
 const express = require('express');
 const fs = require('fs');
 // creates a unique id
-const { v4: uuidv4 } = require('uuid');
-const apiRoutes = express.Router();
+// const { v4: uuidv4 } = require('uuid');
+const apiRouter = express.Router();
 const db = require('../db/db.json');
 
 // API GET Request
-apiRoutes.get('/', (req,res) => {
+apiRouter.get('/', (req,res) => {
 
     res.json(db);
 });
 
 // POST route for new note
-apiRoutes.post('/', (req,res) => {
+apiRouter.post('/', (req,res) => {
 
     const { title , text } = req.body;
 
@@ -47,9 +47,15 @@ apiRoutes.post('/', (req,res) => {
     
 });
 
+// DELETE notes route
+// apiRouter.delete( '/:id', ( req, res) => {
+//     const id = req.params.id;
+
+// })
 
 
-module.exports = app; 
+
+module.exports = apiRouter; 
 
 
 

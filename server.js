@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 
-const apiRoutes = require('./routes');
+const api = require('./routes/htmlRoutes');
 // const htmlRoutes = require('./routes/htmlRoutes');
 
 // initialize 'app' with express
@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 // setup api routes
-app.use('/api', apiRoutes);
+app.use('/api', api);
 
 // GET /notes should return the notes.html file
 app.get('/notes', (req,res) => 
