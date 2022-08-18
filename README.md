@@ -22,6 +22,8 @@
 
   ## App
   View deployed app using Heroku [here](https://ch11-notepad-app.herokuapp.com/).
+
+  ![Homepage](./Assets/img/Note-Pad%20homepage.png)
   ## License
   This application is licensed under [MIT]((https://opensource.org/licenses/MIT)). 
   <br/> Copyright &copy; 2022 
