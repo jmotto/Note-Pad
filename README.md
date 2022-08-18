@@ -13,9 +13,9 @@
 
   ## Usage
   Click Start on deployed page.
-  Add your note.
-  Save using save icon in top left.
-  Option to delete notes coming soon. 
+  <br/>Add your note.
+  <br/>Save using save icon in top left.
+  <br/>Option to delete notes coming soon. 
 
   ## App
   View deployed app using Heroku [here](https://ch11-notepad-app.herokuapp.com/).
