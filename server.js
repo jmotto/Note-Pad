@@ -39,11 +39,9 @@ app.post('/api/notes', (req, res) => {
       title,
       text,
     };
+    
 
-    const db = require("./db/db.json");
-    db.push(newNote);
-
-    fs.writeFile( './db/db.json', JSON.stringify( './db/db.json', null, 4 ), error => {
+    fs.writeFile( "./db/db.json" , JSON.stringify( "./db/db.json", null, 4 ), error => {
       if (error) {
           console.error(error);
 
