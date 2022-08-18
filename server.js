@@ -40,7 +40,6 @@ app.post('/api/notes', (req, res) => {
       text,
     };
     
-
     fs.writeFile( "./db/db.json" , JSON.stringify( "./db/db.json", null, 4 ), error => {
       if (error) {
           console.error(error);
