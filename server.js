@@ -62,7 +62,7 @@ app.post('/api/notes', (req, res) => {
 }
 });
 
-// // GET * should return the index.html file
+// // GET * to return the index.html file
 app.get('*', (req,res) =>
   res.sendFile(path.join(__dirname, '/public/index.html'))  
 );
