@@ -5,11 +5,11 @@ const fs = require('fs');
 const apiRouter = express.Router();
 const db = require('../db/db.json');
 
-// API GET Request
-apiRouter.get('/api/notes', (req,res) => {
-
-    res.json(db);
-});
+// API GET route
+apiRouter.get('/api/notes', (req,res) => 
+    readFromFile(db).then((data) => res.json(JSON.parse(data)))
+    // res.json(db);
+);
 
 // POST route for new note
 apiRouter.post('/api/notes', (req,res) => {

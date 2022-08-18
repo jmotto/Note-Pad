@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 
 const api = require('./routes/htmlRoutes');
+const apiRouter = require('./routes/apiRoutes');
 // const htmlRoutes = require('./routes/htmlRoutes');
 
 // initialize 'app' with express
@@ -17,15 +18,18 @@ app.use(express.static("public"));
 // setup api routes
 app.use('/api', api);
 
-// GET /notes should return the notes.html file
-app.get('/notes', (req,res) => 
-    res.sendFile(path.join(__dirname, '/public/notes.html'))
-);
+app.use('/api', apiRouter);
 
-// GET * should return the index.html file
-app.get('*', (req,res) =>
-  res.sendFile(path.join(__dirname, '/public/index.html'))  
-);
+
+// // GET /notes should return the notes.html file
+// app.get('/notes', (req,res) => 
+//     res.sendFile(path.join(__dirname, '/public/notes.html'))
+// );
+
+// // GET * should return the index.html file
+// app.get('*', (req,res) =>
+//   res.sendFile(path.join(__dirname, '/public/index.html'))  
+// );
 
 // Use 'app' to listen to a specific PORT
 app.listen(PORT, () =>
