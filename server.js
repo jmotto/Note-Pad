@@ -1,3 +1,4 @@
+// Dependencies
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
@@ -13,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 
-// GET /notes should return the notes.html file
+// GET route for /notes should return the notes.html file
 app.get('/notes', (req,res) => 
     res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
@@ -23,21 +24,24 @@ app.get('/api/notes', (req, res) =>
     fs.readFile('./db/db.json', "utf8", (err, data) => 
     res.json(JSON.parse(data))
     )
+    
 )
 
-
 // POST Route for a new note -- api/notes
+  
 app.post('/api/notes', (req, res) => {
   console.log(req.body);
 
-  const { text, title, id } = req.body;
+  const {title, text} = req.body;
 
   if (req.body) {
     const newNote = {
-      text,
       title,
-      id,
+      text,
     };
+
+    const db = require("./db/db.json");
+    db.push(newNote);
 
     fs.writeFile( './db/db.json', JSON.stringify( './db/db.json', null, 4 ), error => {
       if (error) {
