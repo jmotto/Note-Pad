@@ -1,9 +1,6 @@
 const express = require('express');
 const path = require('path');
-
-const api = require('./routes/htmlRoutes');
-const apiRouter = require('./routes/apiRoutes');
-// const htmlRoutes = require('./routes/htmlRoutes');
+const fs = require('fs');
 
 // initialize 'app' with express
 const app = express();
@@ -15,21 +12,37 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static("public"));
 
-// setup api routes
-app.use('/api', api);
 
-app.use('/api', apiRouter);
+// GET /notes should return the notes.html file
+app.get('/notes', (req,res) => 
+    res.sendFile(path.join(__dirname, '/public/notes.html'))
+);
 
 
-// // GET /notes should return the notes.html file
-// app.get('/notes', (req,res) => 
-//     res.sendFile(path.join(__dirname, '/public/notes.html'))
-// );
+app.get('/api/notes', (req, res) => 
+    fs.readFile('./db/db.json', "utf8", (err, data) => 
+    res.json(JSON.parse(data))
+    )
+)
+
+
+
+// const api = require('./routes/htmlRoutes');
+// const apiRouter = require('./routes/apiRoutes');
+// // const htmlRoutes = require('./routes/htmlRoutes');
+// // setup api routes
+// app.use('/api', api);
+
+// app.use('/api', apiRouter);
+
+
+
+
 
 // // GET * should return the index.html file
-// app.get('*', (req,res) =>
-//   res.sendFile(path.join(__dirname, '/public/index.html'))  
-// );
+app.get('*', (req,res) =>
+  res.sendFile(path.join(__dirname, '/public/index.html'))  
+);
 
 // Use 'app' to listen to a specific PORT
 app.listen(PORT, () =>
