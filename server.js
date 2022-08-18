@@ -26,8 +26,8 @@ app.get('/api/notes', (req, res) =>
 )
 
 
-// POST Route for a new note
-app.post('/', (req, res) => {
+// POST Route for a new note -- api/notes
+app.post('/api/notes', (req, res) => {
   console.log(req.body);
 
   const { text, title, id } = req.body;
@@ -43,7 +43,7 @@ app.post('/', (req, res) => {
       if (error) {
           console.error(error);
 
-          res.json('Error in adding note');
+          res.json(error);
       } else {
           console.log( 'Note saved');
           

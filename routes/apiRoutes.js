@@ -26,22 +26,22 @@
         
 //         db.push(newNote);
     
-        fs.writeFile( './db/db.json', JSON.stringify( './db/db.json', null, 4 ), error => {
-            if (error) {
-                console.error(error);
+//         fs.writeFile( './db/db.json', JSON.stringify( './db/db.json', null, 4 ), error => {
+//             if (error) {
+//                 console.error(error);
 
-                res.json('Error in adding note');
-            } else {
-                console.log( 'Note saved');
+//                 res.json('Error in adding note');
+//             } else {
+//                 console.log( 'Note saved');
                 
-                const response = {
-                    status: "Success!",
-                    body: newNote,
-                };
+//                 const response = {
+//                     status: "Success!",
+//                     body: newNote,
+//                 };
                 
-                res.json(response);
-            }
-        })
+//                 res.json(response);
+//             }
+//         })
 
 //     }
     
