@@ -9,10 +9,7 @@
   * [Usage](#usage)
   * [Deployed app](#app)
   * [License](#license)
-  * [Contributors](#contributors)
-  * [Tests](#tests)
   * [Questions](#questions)
-
 
   ## Usage
   Click Start on deployed page.
