@@ -34,13 +34,13 @@ app.post('/api/notes', (req, res) => {
 
   const {title, text} = req.body;
 
-  if (req.body) {
+  if (title && text) {
     const newNote = {
       title,
       text,
     };
     
-    fs.writeFile( "./db/db.json" , JSON.stringify( "./db/db.json", null, 4 ), error => {
+    fs.writeFile(newNote, "./db/db.json" , JSON.stringify( "./db/db.json", null, 4 ), error => {
       if (error) {
           console.error(error);
 
