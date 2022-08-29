@@ -1,1 +1,10 @@
-"./db/db.json"
+[
+    {
+        "title": "New Note 1",
+        "text": "note 1"
+    },
+    {
+        "title": "New Note 2",
+        "text": "note 2"
+    }
+]

@@ -40,22 +40,29 @@ app.post('/api/notes', (req, res) => {
       text,
     };
     
-    fs.writeFile(newNote, "./db/db.json" , JSON.stringify( "./db/db.json", null, 4 ), error => {
-      if (error) {
-          console.error(error);
-
-          res.json(error);
-      } else {
-          console.log( 'Note saved');
-          
-          const response = {
-              status: "Success!",
-              body: newNote,
-          };
-          
-          res.json(response);
-      }
-  })
+    fs.readFile('./db/db.json', "utf8", (err, data) => {
+      const getNotes = JSON.parse(data);
+      getNotes.push(newNote);
+      fs.writeFile( "./db/db.json" , JSON.stringify( getNotes, null, 4 ), error => {
+        if (error) {
+            console.error(error);
+  
+            res.json(error);
+        } else {
+            console.log( 'Note saved');
+            
+            const response = {
+                status: "Success!",
+                body: newNote,
+            };
+            
+            res.json(response);
+        }
+    })
+    }
+    
+    )
+ 
 }
 });
 
