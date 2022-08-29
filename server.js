@@ -1,7 +1,7 @@
 // Dependencies
-const express = require('express');
-const path = require('path');
-const fs = require('fs');
+const express = require("express");
+const path = require("path");
+const fs = require("fs");
 
 // initialize 'app' with express
 const app = express();
@@ -13,65 +13,60 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static("public"));
 
-
 // GET route for /notes should return the notes.html file
-app.get('/notes', (req,res) => 
-    res.sendFile(path.join(__dirname, '/public/notes.html'))
+app.get("/notes", (req, res) =>
+  res.sendFile(path.join(__dirname, "/public/notes.html"))
 );
 
 // GET Route for /api/notes
-app.get('/api/notes', (req, res) => 
-    fs.readFile('./db/db.json', "utf8", (err, data) => 
-    res.json(JSON.parse(data))
-    )
-    
-)
+app.get("/api/notes", (req, res) =>
+  fs.readFile("./db/db.json", "utf8", (err, data) => res.json(JSON.parse(data)))
+);
 
 // POST Route for a new note -- api/notes
-  
-app.post('/api/notes', (req, res) => {
+
+app.post("/api/notes", (req, res) => {
   console.log(req.body);
 
-  const {title, text} = req.body;
+  const { title, text } = req.body;
 
   if (title && text) {
     const newNote = {
       title,
       text,
     };
-    
-    fs.readFile('./db/db.json', "utf8", (err, data) => {
+
+    fs.readFile("./db/db.json", "utf8", (err, data) => {
       const getNotes = JSON.parse(data);
       getNotes.push(newNote);
-      fs.writeFile( "./db/db.json" , JSON.stringify( getNotes, null, 4 ), error => {
-        if (error) {
+      fs.writeFile(
+        "./db/db.json",
+        JSON.stringify(getNotes, null, 4),
+        (error) => {
+          if (error) {
             console.error(error);
-  
+
             res.json(error);
-        } else {
-            console.log( 'Note saved');
-            
+          } else {
+            console.log("Note saved");
+
             const response = {
-                status: "Success!",
-                body: newNote,
+              status: "Success!",
+              body: newNote,
             };
-            
+
             res.json(response);
+          }
         }
-    })
-    }
-    
-    )
- 
-}
+      );
+    });
+  }
 });
 
 // // GET * to return the index.html file
-app.get('*', (req,res) =>
-  res.sendFile(path.join(__dirname, '/public/index.html'))  
+app.get("*", (req, res) =>
+  res.sendFile(path.join(__dirname, "/public/index.html"))
 );
 
 // Use 'app' to listen to a specific PORT
-app.listen(PORT, () =>
-  console.log(`Server Up! Listening to ${PORT}`)
-);
+app.listen(PORT, () => console.log(`Server Up! Listening to ${PORT}`));
