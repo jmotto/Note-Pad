@@ -63,6 +63,14 @@ app.post("/api/notes", (req, res) => {
   }
 });
 
+// Get view saved notes
+
+
+
+//  Delete notes
+
+
+
 // // GET * to return the index.html file
 app.get("*", (req, res) =>
   res.sendFile(path.join(__dirname, "/public/index.html"))
